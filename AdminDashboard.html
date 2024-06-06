@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            overflow-y: auto;
+        }
+
+        nav {
+            position: fixed; /* Position the nav element */
+            top: 40px; 
+            right: 0; /* Position it at the right */
+            text-decoration: none;
+            padding: 10px; /* Add some padding for better appearance */
+        }
+
+        /* Add logo icon */
+        nav img {
+            position: absolute;
+            top: 10px;
+            right: 90px; /* Adjust the right property */
+            height: 20px; /* Adjust as needed */
+            width: auto;
+        }
+
+        /* Remove bullet point from list items */
+        nav button {
+            background-color: blue;
+            padding: 0;
+            font-size: 25px;
+            color: white;
+            margin: 0;
+            width: 300px;
+            height: 60px;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 300px; /* Adjust margin to move button closer to heading */
+        }
+
+        nav button a {
+            text-decoration: none; /* Remove underline from link */
+            color: white; /* Set link color */
+        }
+
+        /* Position links below buttons */
+        .updateLinks,
+        .viewLinks {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Center links within their container */
+        .updateLinks a,
+        .viewLinks a {
+            display: block; /* Display links as blocks */
+            margin: 5px auto; /* Center links horizontally */
+            text-decoration: none; /* Remove underline from links */
+            color: white; /* Set link color */
+            background-color: blue; /* Set background color */
+            padding: 10px 20px; /* Add padding */
+            border-radius: 5px; /* Add rounded corners */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            transition: background-color 0.3s; /* Add transition effect */
+        }
+
+        /* Style the links on hover */
+        .updateLinks a:hover,
+        .viewLinks a:hover {
+            background-color: darkblue; /* Darken background color */
+        }
+
+        /* Center the h1 text */
+        h1 {
+            text-align: center;
+            color: white;
+            background-color: blue;
+            height: 100px;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            margin: 0; /* Remove default margin */
+        }
+
+        .buttonsUpdate {
+            width: 300px;
+            height: 50px;
+            font-size: 20px;
+            margin-bottom: 80px; /* Add more space between buttons */
+            margin-left: 500px; /* Shift button to the right */
+            margin-right: auto; /* Shift button to the left */
+            background-color: orange; 
+        }
+
+        .ViewData {
+            width: 300px;
+            height: 50px;
+            font-size: 20px;
+            margin-top: 80px; /* Add space between buttons */
+            margin-left: 500px; /* Shift button to the right */
+            margin-right: auto; /* Shift button to the left */ 
+            background-color: antiquewhite;
+        }
+
+        .container {
+            margin-top: 100px; /* Add margin between h1 and buttons */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .welcomeText {
+            width: 300px;
+            height: 50px;
+            font-size: 20px;
+            margin-bottom: 60px; /* Add space between buttons */
+            margin-left: 1400px; /* Shift button to the right */
+            margin-right: auto; /* Shift button to the left */
+            position: relative;
+            top: -160px;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px; /* Adjust height as needed */
+            font-size: 20px; /* Increase font size */
+        }
+
+        .services-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .services-list li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .services-list li copyright {
+            color: black;
+            position: bottom; /* Change bottom */
+            margin-bottom: auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+       .section{
+        text-align: center;
+       }
+       /* Increase line height */
+       section p {
+           line-height: 1.5; /* Adjust the value as needed */
+       }
+       
+
+
+    </style>
+</head>
+<body>
+    
+  <img src="#" alt="Logo"> <!-- Placeholder for your logo -->
+  
+    <nav class="nav">
+        <ul>
+            <button><a href="#">Go To Website</a></button>
+        </ul>
+    </nav>
+    <div>
+        <h1>ADMIN DASHBOARD</h1>
+    </div>
+    <div class="container">
+        <button class="buttonsUpdate" onclick="toggleUpdateLinks()">
+            Register Candidate
+            <div class="updateLinks hidden">
+                <a href="addPatient.html" style="margin-top: 40px;">Patient Registration</a>
+                <a href="addStudent.html">Student Registration</a>
+                <a href="addSecurity.html">Add Securiry</a>
+                <a href="addDiaspora.html">Add Securiry</a> 
+               
+            </div>
+        </button>
+        <button class="ViewData" onclick="toggleViewLinks()">
+            View Data
+            <div class="viewLinks hidden">
+                <a href="VotingList.html" style="margin-top: 40px;"></a>
+                <a href="VotingPage.html"></a>
+               
+              
+            </div>
+        </button>
+        <div class="welcomeText">
+            <h2>Welcome to SRT Dashboard</h2>
+        </div>
+    </div>
+
+    <section>
+        <p>
+        </p>
+    </section>
+    
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <!-- Add more services as needed -->
+                <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleUpdateLinks() {
+            var updateLinks = document.querySelector('.buttonsUpdate .updateLinks');
+            var viewLinks = document.querySelector('.ViewData .viewLinks');
+            
+            updateLinks.classList.toggle('hidden');
+            viewLinks.classList.add('hidden');
+            
+            // Adjust the margin of the ViewData button
+            var viewDataButton = document.querySelector('.ViewData');
+            if (!updateLinks.classList.contains('hidden')) {
+                viewDataButton.style.marginTop = '150px'; // Adjust this value as needed
+            } else {
+                viewDataButton.style.marginTop = ''; // Reset the margin
+            }
+            
+            // Adjust the margin of the buttons under the Update Content button
+            var buttonsUnderUpdate = document.querySelectorAll('.buttonsUpdate ~ button');
+            buttonsUnderUpdate.forEach(button => {
+                if (!updateLinks.classList.contains('hidden')) {
+                    button.style.marginTop = '90px'; // Adjust this value as needed
+                } else {
+                    button.style.marginTop = ''; // Reset the margin
+                }
+            });
+        }
+
+        function toggleViewLinks() {
+            var updateLinks = document.querySelector('.buttonsUpdate .updateLinks');
+            var viewLinks = document.querySelector('.ViewData .viewLinks');
+            
+            viewLinks.classList.toggle('hidden');
+            updateLinks.classList.add('hidden');
+            
+            // Reset the margin of the ViewData button
+            var viewDataButton = document.querySelector('.ViewData');
+            viewDataButton.style.marginTop = ''; // Reset the margin
+            
+            // Reset the margin of the buttons under the Update Content button
+            var buttonsUnderUpdate = document.querySelectorAll('.buttonsUpdate ~ button');
+            buttonsUnderUpdate.forEach(button => {
+                button.style.marginTop = ''; // Reset the margin
+            });
+        }
+    </script>
+</body>
+</html>

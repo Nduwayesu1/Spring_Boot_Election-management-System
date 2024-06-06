@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Form</title>
+    <style>
+        /* Basic CSS for styling the form */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            padding-top: 100px; /* Ensure there is enough space at the top */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        nav {
+            background-color: #007bff;
+            padding: 20px 0;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            animation: fadeIn 2s;
+        }
+
+        nav a:hover {
+            animation: bounce 1s;
+        }
+
+        h2 {
+            margin-top: 20px;
+            animation: fadeIn 2s;
+            color: #007bff; /* Set color for the heading */
+        }
+
+        form {
+            margin-top: 20px; /* Increased margin-top to ensure visibility */
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 700px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-section {
+            flex: 0 0 48%;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            animation: fadeIn 2s;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #007bff; /* Change border color on focus */
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: calc(100% - 40px);
+            padding: 15px 20px;
+            border: none;
+            border-radius: 4px;
+            margin-top: auto;
+            align-self: center;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            color: blue;
+        }
+
+        footer {
+            background-color: blue;
+            padding: 40px 0;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            z-index: 1000;
+        }
+
+        footer a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 24px;
+            animation: fadeIn 2s;
+        }
+
+        footer a:hover {
+            animation: bounce 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+
+<h2>Voting Form</h2>
+
+<form method="post" th:action="@{/votes}" th:object="${voting}">
+    <div class="form-section">
+        <label for="vote_status">Status:</label>
+        <input type="text" id="vote_status" name="vote_status" required placeholder="Enter Status">
+    </div>
+    <div class="form-section">
+        <label for="citizen_Id">Citizen ID:</label>
+        <input type="text" id="citizen_Id" name="citizen_Id" th:field="*{citizen_Id}" required placeholder="Enter Citizen ID">
+    </div>
+    <div class="form-section">
+        <label for="candidate_name">Candidate Name:</label>
+        <input type="text" id="candidate_name" name="candidate_name" th:field="*{candidate_name}" required placeholder="Enter Candidate Name">
+    </div>
+    <div class="form-section">
+        <label for="votes_date">Vote Date:</label>
+        <input type="date" id="votes_date" name="votes_date" th:field="*{votes_date}" required>
+    </div>
+    <input type="submit" value="Submit Vote">
+    <div class="message" th:if="${message != null}">
+        [[${message}]]
+    </div>
+</form>
+
+<footer>
+    <div>
+        Follow us on social media:
+        <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+        <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+        <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // JavaScript functionality remains unchanged
+    });
+</script>
+
+</body>
+</html>

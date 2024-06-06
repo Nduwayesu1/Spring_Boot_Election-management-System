@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User SignUp</title>
+    <style>
+        /* Basic CSS for styling the form */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        nav {
+            background-color: #007bff;
+            padding: 20px 0;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .form-container {
+            margin-top: 50px; /* Adjusted margin */
+            width: 500px; /* Reduced width */
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-height: 70vh; /* Set a max height */
+            overflow-y: auto; /* Add scroll if content overflows */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 100px; /* Ensure space between form and footer */
+        }
+
+        .form-section {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select,
+        input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: calc(100% - 40px);
+            padding: 15px 20px;
+            border: none;
+            border-radius: 4px;
+            margin-top: auto;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            color: blue;
+        }
+
+        .login-option {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-option button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-option button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: blue;
+            padding: 40px 0;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            z-index: 1000;
+        }
+
+        footer a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 24px;
+        }
+
+        h2 {
+            margin-top: 60px;
+            color: #007bff; /* Set title color to blue */
+            position: relative;
+            animation: moveLeftRight 10s infinite alternate;
+        }
+
+        @keyframes moveLeftRight {
+            0% {
+                left: 0;
+            }
+            100% {
+                left: calc(100% - 100px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="form-container"> <!-- Added a container for the form -->
+    <h2 class="h2">USER SIGN UP</h2> <!-- Moved the title inside the container -->
+    <form method="post" th:action="@{/userSignUp}" th:object="${SignUp}">
+          <div class="form-section">
+            <label for="username">Email:</label>
+            <input type="email" id="username" name="username" th:field="*{username}" required style="width: calc(100% - 19px); height: 29px;">
+         </div>
+          
+        
+        <div class="form-section">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" th:field="*{password}" required>
+        </div>
+        <div class="form-section">
+            <label for="role">Role:</label>
+            <select id="role" name="role" th:field="*{role}" required>
+                <option value="Patient">Patient</option>
+                <option value="Diaspora">Diaspora</option>
+                <option value="Leaders">Leaders</option>
+                <option value="Student">Student</option>
+                <option value="Admin">Admin</option>
+            </select>
+        </div>
+        <input type="submit" value="Sign Up">
+        <div class="message" th:if="${message != null}">
+            [[${message}]]
+        </div>
+        <div class="login-option">
+            Already have an account?
+            <button onclick="location.href='/Userlogin.html'">Login</button>
+        </div>
+    </form>
+</div>
+
+<footer>
+    <div>
+        Follow us on social media:
+        <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+        <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+        <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+    </div>
+</footer>
+
+</body>
+</html>

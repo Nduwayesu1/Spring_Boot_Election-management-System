@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaders Registration</title>
+    <style>
+        /* Basic CSS for styling the form */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Ensure the nav and form stack vertically */
+            align-items: center;
+            min-height: 100vh; /* Ensure the page fills the viewport */
+        }
+
+        nav {
+            background-color: #007bff;
+            padding: 20px 0; /* Increase top and bottom padding */
+            width: 100%;
+            text-align: center;
+            position: fixed; /* Fixed position */
+            top: 0; /* Place at the top of the viewport */
+            z-index: 1000; /* Ensure it's above other content */
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        form {
+            margin-top: 30px; /* Add more space below the nav */
+            background-color: white;
+            padding: 20px; /* Increased padding */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 700px; /* Adjust width as needed */
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping */
+            justify-content: space-between; /* Distribute space between sections */
+        }
+
+        .form-section {
+            flex: 0 0 48%; /* Adjust width of each section */
+            margin-bottom: 20px; /* Add some space below each section */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="date"],
+        
+        select,
+        input[type="submit"] {
+            width: calc(100% - 20px); /* Adjusted width to accommodate padding */
+            padding: 8px; /* Reduced padding */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensure padding and border are included in element's total width */
+            margin-bottom: 10px; /* Reduced margin */
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: calc(100% - 40px); /* Ensure submit button takes full width with padding */
+            padding: 15px 20px; /* Added padding */
+            border: none; /* Remove border */
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: auto; /* Align at the bottom of the form */
+            align-self: center; /* Center the button horizontally */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            color: blue;
+        }
+
+       footer {
+         background-color: blue;
+         padding: 40px 0; /* Increased top and bottom padding */
+         width: 100%;
+         text-align: center;
+         color: #fff;
+         position: fixed; /* Fixed position */
+         bottom: 0; /* Place at the bottom of the viewport */
+         z-index: 1000; /* Ensure it's above other content */
+}
+       
+
+        footer a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 24px; /* Adjust icon size */
+        }
+     h2 {
+    margin-top: 60px; /* Adjust the margin-top value as needed */
+    position: relative; /* Set position to relative */
+    animation: moveLeftRight 10s infinite alternate; /* Apply animation */
+}
+
+@keyframes moveLeftRight {
+    0% {
+        left: 0; /* Start position */
+    }
+    100% {
+        left: calc(100% - 100px); /* End position */
+    }
+}
+    
+    .form-section input[type="password"] {
+    width: 300px; /* Adjust the width as needed */
+}
+     
+    
+     
+
+       
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+
+<h2 class="h2" >REGISTER LEADER</h2>
+
+<form method="post" th:action="@{/updateLeaders}" th:object="${Leader}">
+    <div class="form-section">
+        <label for="R_ID">ID:</label>
+        <input type="text" id="R_ID" name="R_ID" th:field="*{R_ID}" required>
+    </div>
+    <div class="form-section">
+        <label for="R_date_Of_birth">Date of Birth:</label>
+        <input type="date" id="R_date_Of_birth" name="R_date_Of_birth" th:field="*{R_date_Of_birth}" required>
+    </div>
+    <div class="form-section">
+        <label for="R_name">Name:</label>
+        <input type="text" id="R_name" name="R_name" th:field="*{R_name}" required>
+    </div>
+    <div class="form-section">
+        <label for="R_gender">Gender:</label>
+        <select id="R_genderr" name="R_gender" th:field="*{R_gender}" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+    </div>
+   <div class="form-section">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" th:field="*{password}" required >
+ </div>
+   
+    
+    <div class="form-section">
+        <label for="R_email">Email:</label>
+        <input type="email" id="R_email" name="R_email" th:field="*{R_email}" required>
+    </div>
+    <div class="form-section">
+        <label for="R_place_of_issue">Place of Issue:</label>
+        <input type="text" id="R_place_of_issue" name="R_place_of_issue" th:field="*{R_place_of_issue}" required>
+    </div>
+    <div class="form-section">
+        <label for="R_status">Status:</label>
+        <input type="text" id="R_status" name="R_status" th:field="*{R_status}" required>
+    </div>
+    <input type="submit" value="Register">
+    <div class="message" th:if="${message != null}">
+        [[${message}]]
+    </div>
+</form>
+
+<footer>
+    <div>
+        Follow us on social media:
+        <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+        <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+        <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+    </div>
+</footer>
+
+</body>
+</html>

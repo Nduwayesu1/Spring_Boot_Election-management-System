@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votes List</title>
+    <style>
+        /* CSS styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+
+        .navbar {
+            background-color: blue;
+            overflow: hidden;
+            text-align: center; /* Center align the navbar */
+            padding: 20px 0; /* Adjust the padding to increase the height */
+        }
+
+        .navbar a {
+            display: inline-block;
+            color: #f2f2f2; /* Text color */
+            padding: 20px 20px; /* Padding */
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd; /* Hover background color */
+            color: black; /* Hover text color */
+        }
+
+        /* CSS styles for the container */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #45b6fe;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: grey;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Horizontal line */
+            border-right: 1px solid #ddd; /* Vertical line */
+        }
+
+        th {
+            background-color: blue;
+            border-bottom: 2px solid #ddd; /* Make header row line thicker */
+        }
+
+       /* CSS styles for the footer */
+    footer {
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     background-color: blue;
+     color: #f2f2f2;
+     text-align: center;
+     padding: 20px 0;
+}
+
+
+        /* CSS for social media icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+        }
+ 
+  
+              
+       
+    </style>
+</head>
+<body>
+    <!-- Top navigation bar -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Back</a>
+    </div>
+
+    <!-- Content container -->
+    <div class="container">
+        <h2>Votes List</h2>
+      
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Status</th>
+                    <th>Citizen ID</th>
+                  <th>
+                   Candidate Name
+                  </th>
+
+
+                    <th>Date</th>
+                    <th>Voice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate over the list of votes and generate table rows -->
+                <tr th:each="vote : ${VoteList}">
+                    <td th:text="${vote.votes_id}"></td>
+                    <td th:text="${vote.vote_status}"></td>
+                    <td th:text="${vote.citizen_Id}"></td>
+                    <td th:text="${vote.candidate_name}"></td>
+                    <td th:text="${vote.votes_date}"></td>
+                    <td th:text="${vote.voice}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div th:if="${totalpages > 1}">
+            <div>
+                <div>Total Rows: <span th:text="${totalpages}"></span></div>
+                <div>
+                <span th:each="i: ${#numbers.sequence(1, totalpages)}">
+                    <a th:if="${currentPage != i}" th:href="@{'/votingList/' + ${i}}"><span th:text="${i}"></span></a>
+                    <span th:unless="${currentPage != i}" th:text="${i}"></span>
+                    <span th:unless="${i == totalpages}">, </span>
+                </span>
+            </div>
+            <div>
+                <a th:if="${currentPage < totalpages}" th:href="@{'/votingList/' + ${currentPage + 1}}">Next</a>
+                <span th:unless="${currentPage < totalpages}">Next</span>
+            </div>
+            <div>
+                <a th:if="${currentPage < totalpages}" th:href="@{'/votingList/' + ${totalpages}}">Last</a>
+                <span th:unless="${currentPage < totalpages}">Last</span>
+            </div>
+        </div>
+            </div>
+            
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Your Company Name
+        <div class="social-icons">
+            <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+        </div>
+    </footer>
+</body>
+</html>
